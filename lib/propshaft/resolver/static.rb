@@ -7,8 +7,16 @@ module Propshaft::Resolver
     end
 
     def resolve(logical_path)
-      if asset_path = parsed_manifest[logical_path]
-        File.join prefix, asset_path
+      if asset = parsed_manifest[logical_path]
+        File.join prefix, asset["digested_path"]
+      else
+        raise Propshaft::MissingAssetError.new(logical_path)
+      end
+    end
+
+    def integrity(logical_path)
+      if asset = parsed_manifest[logical_path]
+        asset["integrity"]
       else
         raise Propshaft::MissingAssetError.new(logical_path)
       end

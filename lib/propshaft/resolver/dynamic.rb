@@ -13,5 +13,13 @@ module Propshaft::Resolver
         raise Propshaft::MissingAssetError.new(logical_path)
       end
     end
+
+    def integrity(logical_path)
+      if asset = load_path.find(logical_path)
+        asset.integrity
+      else
+        raise Propshaft::MissingAssetError.new(logical_path)
+      end
+    end
   end
 end

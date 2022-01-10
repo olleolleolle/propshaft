@@ -34,8 +34,8 @@ class Propshaft::LoadPathTest < ActiveSupport::TestCase
 
   test "manifest" do
     @load_path.manifest.tap do |manifest|
-      assert_equal "one-f2e1ec14d6856e1958083094170ca6119c529a73.txt", manifest["one.txt"]
-      assert_equal "nested/three-6c2b86a0206381310375abdd9980863c2ea7b2c3.txt", manifest["nested/three.txt"]
+      assert_equal "one-f2e1ec14d6856e1958083094170ca6119c529a73.txt", manifest["one.txt"]["digested_path"]
+      assert_equal "nested/three-6c2b86a0206381310375abdd9980863c2ea7b2c3.txt", manifest["nested/three.txt"]["digested_path"]
     end
   end
 
